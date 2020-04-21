@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,9 @@ namespace kundenBank
     {
         static void Main(string[] args)
         {
-            var kunden = new List<Kunde>();
-            string name, adresse;
-            int kNummer, counter = 0;
+            ArrayList kunden = new ArrayList();
+            int counter = 0;
+            Kunde kunde = new Kunde();
 
             Console.WriteLine("Wie viele Kunden willst du Eingeben?: ");
             string input = Console.ReadLine();
@@ -29,23 +30,20 @@ namespace kundenBank
                 Console.Clear();
                 Console.WriteLine("Kunde " + (counter + 1));
                 Console.WriteLine("Kunden Name: ");
-                name = Console.ReadLine();
+                kunde.Name = Console.ReadLine();
+                kunden.Add(kunde.Name);
                 Console.WriteLine("Kunden Adresse: ");
-                adresse = Console.ReadLine();
+                kunde.Adresse = Console.ReadLine();
+                kunden.Add(kunde.Adresse);
                 Console.WriteLine("Kunden Nummer: ");
-                kNummer = int.Parse(Console.ReadLine());
-                Kunde kunde = new Kunde() { Name = name, Adresse = adresse, kundenNummer = kNummer };
-                kunden.Add(kunde);
+                kunde.kundenNummer = int.Parse(Console.ReadLine());
+                kunden.Add(kunde.kundenNummer);
                 counter++;
-                
             }
 
-
-            foreach (var item in kunden)
+            foreach (Object item in kunden)
             {
-                Console.WriteLine(item.Name);
-                Console.WriteLine(item.Adresse);
-                Console.WriteLine(item.kundenNummer + "/n");
+                Console.WriteLine(item);
             }
 
             Console.ReadKey();
